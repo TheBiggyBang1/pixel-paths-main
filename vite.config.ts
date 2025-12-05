@@ -1,0 +1,19 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+// componentTagger removed to avoid Lovable dev-time tagging
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  base: '/pixel-paths-main/',
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [react()].filter(Boolean),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));

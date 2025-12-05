@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Retro RPG Color Palette - Light Purple, Yellow, Light Blue */
+    --background: 230 25% 12%;
+    --foreground: 45 100% 96%;
+
+    --card: 230 20% 16%;
+    --card-foreground: 45 100% 96%;
+
+    --popover: 230 20% 16%;
+    --popover-foreground: 45 100% 96%;
+
+    --primary: 280 60% 70%;
+    --primary-foreground: 230 25% 12%;
+
+    --secondary: 198 95% 60%;
+    --secondary-foreground: 230 25% 12%;
+
+    --muted: 230 15% 22%;
+    --muted-foreground: 230 10% 60%;
+
+    --accent: 50 100% 65%;
+    --accent-foreground: 230 25% 12%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 45 100% 96%;
+
+    --border: 230 20% 25%;
+    --input: 230 20% 20%;
+    --ring: 280 60% 70%;
+
+    --radius: 0.25rem;
+
+    /* Game-specific tokens */
+    --opensource: 145 70% 45%;
+    --opensource-foreground: 45 100% 96%;
+    --opensource-glow: 145 70% 55%;
+
+    --corporate: 0 0% 45%;
+    --corporate-foreground: 45 100% 96%;
+    --corporate-accent: 0 60% 50%;
+
+    --dialogue-bg: 230 30% 8%;
+    --dialogue-border: 280 60% 70%;
+    --dialogue-text: 45 100% 96%;
+
+    --pixel-shadow: 0 4px 0 hsl(230 30% 5%);
+
+    /* Sidebar defaults */
+    --sidebar-background: 230 25% 10%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 280 60% 70%;
+    --sidebar-primary-foreground: 230 25% 12%;
+    --sidebar-accent: 198 95% 60%;
+    --sidebar-accent-foreground: 230 25% 12%;
+    --sidebar-border: 230 20% 25%;
+    --sidebar-ring: 280 60% 70%;
+    /* Degrader variables (kept for component borders/overlays) */
+    --gradient-start: 210 90% 55%; /* bright blue */
+    --gradient-mid: 320 85% 62%;   /* vibrant pink */
+    --gradient-end: 48 100% 60%;   /* warm yellow */
+  }
+
+  .dark {
+    --background: 230 25% 12%;
+    --foreground: 45 100% 96%;
+    --card: 230 20% 16%;
+    --card-foreground: 45 100% 96%;
+    --popover: 230 20% 16%;
+    --popover-foreground: 45 100% 96%;
+    --primary: 280 60% 70%;
+    --primary-foreground: 230 25% 12%;
+    --secondary: 198 95% 60%;
+    --secondary-foreground: 230 25% 12%;
+    --muted: 230 15% 22%;
+    --muted-foreground: 230 10% 60%;
+    --accent: 50 100% 65%;
+    --accent-foreground: 230 25% 12%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 45 100% 96%;
+    --border: 230 20% 25%;
+    --input: 230 20% 20%;
+    --ring: 280 60% 70%;
+    --sidebar-background: 230 25% 10%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 280 60% 70%;
+    --sidebar-primary-foreground: 230 25% 12%;
+    --sidebar-accent: 198 95% 60%;
+    --sidebar-accent-foreground: 230 25% 12%;
+    --sidebar-border: 230 20% 25%;
+    --sidebar-ring: 280 60% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Press Start 2P', cursive;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+}
+
+@layer components {
+  .pixel-border {
+    @apply border-4 border-primary;
+    box-shadow: 
+      inset -4px -4px 0 0 hsl(var(--muted)),
+      4px 4px 0 0 hsl(230 30% 5%);
+  }
+
+  .pixel-btn {
+    @apply relative px-6 py-3 font-pixel text-sm transition-all duration-100;
+    border: 4px solid transparent;
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 1), hsl(var(--primary) / 1)),
+      linear-gradient(135deg, hsl(var(--gradient-start) / 1) 0% 33.333%, hsl(var(--gradient-mid) / 1) 33.333% 66.666%, hsl(var(--gradient-end) / 1) 66.666% 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 4px 4px 0 0 hsl(230 30% 5%);
+  }
+
+  .pixel-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 hsl(230 30% 5%);
+  }
+
+  .pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+
+  .dialogue-box {
+    @apply relative p-6;
+    border: 4px solid transparent;
+    background-image: 
+      linear-gradient(hsl(var(--dialogue-bg) / 1), hsl(var(--dialogue-bg) / 1)),
+      linear-gradient(135deg, hsl(var(--gradient-start) / 1) 0% 33.333%, hsl(var(--gradient-mid) / 1) 33.333% 66.666%, hsl(var(--gradient-end) / 1) 66.666% 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 
+      inset -4px -4px 0 0 hsl(var(--muted)),
+      8px 8px 0 0 hsl(230 30% 5%);
+  }
+
+  .typewriter {
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+
+  .choice-opensource {
+    @apply bg-opensource text-opensource-foreground border-4;
+    border-color: hsl(var(--opensource-glow));
+  }
+
+  .choice-corporate {
+    @apply bg-corporate text-corporate-foreground border-4;
+    border-color: hsl(var(--corporate-accent));
+  }
+
+  .scene-container {
+    @apply relative w-full h-full overflow-hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .character-portrait {
+    @apply w-24 h-24 rounded-lg overflow-hidden;
+    image-rendering: pixelated;
+    border: 4px solid hsl(var(--primary));
+    box-shadow: 4px 4px 0 0 hsl(230 30% 5%);
+  }
+
+  .game-title {
+    text-shadow: 
+      4px 4px 0 hsl(230 30% 5%),
+      -2px -2px 0 hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .font-pixel {
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-fade-in-out {
+    animation: fade-in-out 0.5s ease-in-out;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 25px hsl(var(--primary) / 0.8);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes float-vertical {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float-vertical 3.5s ease-in-out infinite;
+}
